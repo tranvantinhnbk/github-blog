@@ -1,0 +1,44 @@
+/* Style for the fixed header */
+header {
+  height: 50px; /* Set a fixed height for the header */
+  border: 1px solid #ccc; /* Just for visualization */
+  display: flex;
+  background-color: #e3f2fd;
+
+  .avatar {
+    height: 100%;
+    display: flex;
+    font-weight: bold; /* Example font-weight; adjust as needed */
+    font-size: 20px;
+    font-family: cursive;
+    color: #FF1493;
+    align-items: center;
+    img {
+      width: auto; /* Allow the image width to adjust automatically */
+      height: 100%; /* Make the image take the full height of its parent (.avatar) */
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    gap: 40px;
+
+    justify-content: center;
+    width: 100%;
+    li {
+      font-weight: bold; /* Example font-weight; adjust as needed */
+      font-size: 20px;
+      cursor: pointer; /* Change the cursor to pointer on hover */
+      &:hover {
+        color:yellow;
+    }
+      /* You can add more styles as per your design requirements */
+    }
+  }
+}
+
+/* Style for the avatar link */
+
+
+/* Style for the avatar image */
