@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 
 
@@ -8,8 +9,8 @@ import {MatButtonModule} from '@angular/material/button';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, HttpClientModule]
+  imports: [MatButtonModule, HttpClientModule, CommonModule]
 })
 export class NavbarComponent {
-
+  @Input() position: 'sticky' | 'relative' = 'sticky'; // Default to sticky if not provided
 }
