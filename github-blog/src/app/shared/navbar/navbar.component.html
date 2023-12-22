@@ -1,13 +1,30 @@
 
-<nav class="navbar" [ngStyle]="{'position': position}">
+<nav class="mat-typography mat-app-background" class="navbar" [ngStyle]="{'position': position}">
   <a class="avatar">
     <img src="/assets/avarta.png" >
     LvCH
   </a>
   <ul>
     <li><a href="">About</a></li>
-    <li><a href="">Blog</a></li>
-    <li><a href="">Project</a></li>
+    <li>
+      <a [matMenuTriggerFor]="blogMenu">
+        Blog 
+        <img src="/assets/icon/down-arrow.svg"  width=10x>
+      </a>
+      <mat-menu #blogMenu="matMenu">
+        <button mat-menu-item>Leetcode</button>
+        <button mat-menu-item>Mathematic</button>
+      </mat-menu>
+    </li>
+    <li>
+      <a [matMenuTriggerFor]="projectMenu">
+        Project
+        <img src="/assets/icon/down-arrow.svg"  width=10x>
+      </a>
+      <mat-menu #projectMenu="matMenu">
+        <button mat-menu-item>Handwritten digit recognition</button>
+      </mat-menu>
+    </li>
     <li><a href="">Contact</a></li>
   </ul>
   <a class="icon">
@@ -15,92 +32,3 @@
     <img src="/assets/heart-3-fill.svg" >
   </a>
 </nav>
-<div class="test">
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis asperiores quo velit repudiandae quia, itaque commodi enim ad obcaecati eaque? Voluptate atque adipisci optio magnam vitae dolorem tempore ratione molestias?
-  
-</div>
