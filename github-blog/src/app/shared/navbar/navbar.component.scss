@@ -1,0 +1,75 @@
+/* Style for the fixed header */
+.navbar {
+
+  top: 0;             /* Stick it to the top */
+  left: 0;            /* Stick it to the left */
+  right: 0;           /* Stretch it to the right */
+  z-index: 1000; 
+
+  height: 50px; /* Set a fixed height for the header */
+  display: flex;
+  background-color:#e3f2fd;
+  justify-content: space-between;
+  .avatar {
+    display: flex;
+    font-weight: bold; /* Example font-weight; adjust as needed */
+    font-size: 20px;
+    font-family: cursive;
+    color: #FF1493;
+    align-items: center;
+    img {
+      width: auto; /* Allow the image width to adjust automatically */
+      height: 80%; /* Make the image take the full height of its parent (.avatar) */
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    li {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 20px;
+      a {
+        text-decoration: none;
+        color: rgba(0,0,0,.9);
+        cursor: pointer;
+        &:hover {
+          color:yellowgreen;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    ul {
+      display: none; // Hide the ul on tablet widths
+    }
+  }
+
+  .icon {
+    height: 100%;
+    display: flex;
+    font-weight: bold;
+    color: green;
+    align-items: center;
+    
+    img {
+      width: auto; /* Allow the image width to adjust automatically */
+      height: 100%; /* Make the image take the full height of its parent (.avatar) */
+      @media (max-width: 768px) {
+        content: url('/assets/icon/menu.png'); // New image for tablet
+      }
+    }
+    
+  }
+}
+.text {
+  position: relative;
+}
