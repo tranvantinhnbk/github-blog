@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     AppRoutingModule,
     NavbarComponent,
     BrowserAnimationsModule,
+    PageNotFoundComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
