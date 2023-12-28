@@ -1,0 +1,74 @@
+<body>   
+  <div class = "about-wrapper">
+    <!-- Left of screen -->
+    <div class = "about-left">
+      <div class = "about-left-content">
+        <div>
+          <div class = "shadow">
+            <div class = "about-img">
+              <img src = "/assets/avatar.png" alt ="about image">
+            </div>
+          </div>
+          <h2>Trần Văn Tình</h2>
+          <h3>Software Engineer</h3>
+          <table class="info-table">
+            <tbody>
+              <tr>
+                  <td class="label">Major</td>
+                  <td class="value">Computer Sciences</td>
+              </tr>
+              <tr>
+                  <td class="label">University</td>
+                  <td class="value">VNU HCM - University Of Sciences</td>
+              </tr>
+              <tr>
+                  <td class="label">GPA (Ten-point-scale)</td>
+                  <td class="value">8.27/10</td>
+              </tr>
+              <tr>
+                  <td class="label">GPA (Four-point-scale)</td>
+                  <td class="value">3.56/4</td>
+              </tr>
+              <tr>
+                  <td class="label">OBJECTIVE</td>
+                  <td class="value">Fullstack Software engineer</td>
+              </tr>
+            </tbody>
+         </table>
+        </div>
+        <ul class = "social">
+          <li>
+            <a href="https://github.com/tranvantinhnbk">
+              <img src= "/assets/icon/github.svg"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/tranvantinhnbk/">
+              <img src= "/assets/icon/linkedin.svg">
+            </a>
+          </li>
+          <li>
+            <a href="https://tranvantinhnbk.github.io/">
+              <img src= "/assets/icon/internet.svg">
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img src= "/assets/icon/gmail.svg">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Right of screen -->
+    <div class = "about-right">
+      <div class= "about-right-content">
+        <div class="pdf-choice">
+          <button mat-raised-button color="primary" (click)="pdfSrc='/assets/pdf/academic-transcript.pdf'">Academic Transcript</button>
+          <button mat-raised-button color="primary"  (click)="pdfSrc='/assets/pdf/CV-Tran Van Tinh.pdf'">Resume/CV</button>
+        </div>
+        <pdf-viewer [src]="pdfSrc" [original-size]="false" style="width: 90%; height: 100%" zoom-scale="page-fit"/>
+      </div>
+    </div>
+  </div>
+</body>
