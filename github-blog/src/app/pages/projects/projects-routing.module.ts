@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MnistComponent } from './mnist/mnist.component';
 
 const routes: Routes = [
-  { path: '', component: MnistComponent },
+  { path: 'mnist', component: MnistComponent },
 ];
 
 @NgModule({
