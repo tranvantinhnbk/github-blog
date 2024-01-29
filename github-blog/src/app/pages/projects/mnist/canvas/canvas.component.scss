@@ -1,0 +1,11 @@
+.canvas-container {
+  display: inline-block;
+  text-align: center;
+  canvas {
+    border: 1px solid #000;
+    display: block;
+  }
+  button {
+    margin: 10px;
+  }
+}
