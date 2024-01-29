@@ -1,6 +1,10 @@
 <div class="canvas-container">
   <canvas #canvas></canvas>
-  <button mat-raised-button color="primary" (click)="clearCanvas()">Clear</button>
-  <button mat-raised-button color="primary" (click)="preProcessImage()">Cropped</button>
+  <ng-container *ngIf="dataUrl">
+    <img [src]="dataUrl" alt="" width="400" height="400">
+  </ng-container>
 </div>
-<img [src]="dataUrl" alt="" width="400" height="400">
+<div class="button-container"> 
+  <button mat-raised-button color="primary" (click)="clearCanvas()">Clear</button>
+  <button mat-raised-button color="primary" (click)="preProcessImage()">PreProcess</button>
+</div>
