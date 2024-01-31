@@ -29,7 +29,7 @@ export class CanvasComponent implements AfterViewInit {
 
   private cx?: CanvasRenderingContext2D | null;
   capturedImageDataUrl: string | null = null;
-
+  normalizeImage: any | null = null;
   dataUrl: string = '';
 
   public ngAfterViewInit() {
@@ -42,9 +42,9 @@ export class CanvasComponent implements AfterViewInit {
 
     if (!this.cx) throw 'Cannot get context';
 
-    this.cx.lineWidth = 5;
+    this.cx.lineWidth = 28;
     this.cx.lineCap = 'round';
-    this.cx.strokeStyle = 'red';
+    this.cx.strokeStyle = 'rgb(0,0,0)';
 
     this.captureEvents(canvasEl);
   }
@@ -183,67 +183,125 @@ export class CanvasComponent implements AfterViewInit {
   }
 
 
-  preProcessImage() {
+  async preProcessImage() {
     if (this.cx && this.canvas) {
-      let imageData: ImageData = this.cx.getImageData(0, 0, this.width, this.height);
-      const rgbArray: Uint8ClampedArray = imageData.data;
+      let image: ImageData = this.cx.getImageData(0, 0, this.width, this.height);
+      let imageData: Uint8ClampedArray = image.data;
       // Extract the black channel (assuming it's the first channel in the RGB format)
-      const blackChannelArray: Uint8ClampedArray = new Uint8ClampedArray(this.width * this.height);
+      let x = tf.tensor(Array.prototype.slice.call(imageData),[400,400,4], 'float32');// get the tensor 2d image with 4 channel
+      let x_GrayScale = tf.gather(x, [3], 2) // just take red color
+      x_GrayScale = x_GrayScale.reshape([400,400,1])
 
-      for (let i = 0, j = 0; i < rgbArray.length; i += 4, j++) {
-        const blackValue = rgbArray[i]; // Extract the black channel value
-        blackChannelArray[j] = blackValue;
-      }
+      const [topLeftX, topLeftY, bottomRightX, bottomRightY] = this.findCorners(x_GrayScale.arraySync() as number[][]);
+      let column = bottomRightX - topLeftX+1;
+      let row = bottomRightY - topLeftY+1;
+      let edge = Math.max(column, row);
 
-      // Convert 1D array to 2D array
-      const rows = this.height;
-      const columns = this.width;
-      const blackChannel2DArray: number[][] = [];
+      // Testing bounding box
+      // this.cx.strokeStyle = 'red';
+      // this.cx.lineWidth = 2;
+      // this.cx.beginPath();
+      // this.cx.rect(topLeftX, topLeftY, column, row);
+      // this.cx.stroke();
 
-      for (let y = 0; y < rows; y++) {
-        const row: number[] = [];
-        for (let x = 0; x < columns; x++) {
-          const index = y * columns + x;
-          row.push(blackChannelArray[index]);
+      //Get image with bounding box
+      let cropImage = this.cx.getImageData(topLeftX, topLeftY, edge, edge);
+      x = tf.tensor(Array.prototype.slice.call(cropImage.data),[edge,edge,4]);
+      x = tf.div(x, 255);
+      x_GrayScale = tf.gather(x, [3], 2)// just take red color
+      x_GrayScale = tf.image.resizeNearestNeighbor(x_GrayScale as tf.Tensor3D, [20,20]);
+      x_GrayScale = x_GrayScale.reshape([1,20,20,1])
+
+      const Center = this.Center_Mass(x_GrayScale.reshape([20,20]).arraySync())
+      const dX = 14-Center[0]
+      const dY = 14-Center[1]
+
+      let img = x_GrayScale.reshape([20,20]).arraySync() as number[][]
+
+      let matrix = Array.from({ length: 28 }, () => Array(28).fill(0));
+      for (let y = 0; y < 20; y++) {
+        for (let x = 0; x < 20; x++) {
+          if(y+dY <28 && x+dX < 28)
+          {
+            matrix[y+dY][x+dX] = img[y][x]
+          }        
         }
-        blackChannel2DArray.push(row);
-      }
-      const [topLeftX, topLeftY, bottomRightX, bottomRightY] = this.findCorners(blackChannel2DArray)
-      const canvasElement = this.canvas?.nativeElement as HTMLCanvasElement;
-      const croppedWidth = bottomRightX - topLeftX;
-      const croppedHeight = bottomRightY - topLeftY;
-      const squareWidthHeight = Math.max(croppedWidth, croppedHeight);
-
-      const cropImage = this.cx?.getImageData(topLeftX, topLeftY, squareWidthHeight, squareWidthHeight);
-
-      let cropImageData = cropImage.data;
-      const float32Array = new Float32Array(cropImageData);
-      const tensor = tf.tensor(float32Array, [1, squareWidthHeight, squareWidthHeight, 4], 'float32');
-      let grayScale = tf.slice(tensor, [0, 0, 0, 3], [1, squareWidthHeight, squareWidthHeight, 1]);
-      let resizedAlphaChannel = tf.image.resizeNearestNeighbor(grayScale as tf.Tensor3D, [28, 28]);
-
-      let rgbaData = new Uint8ClampedArray(28 * 28 * 4);
-      const resizedAlphaChannelData = resizedAlphaChannel.dataSync(); // Retrieve the data from the tensor
-      for (let i = 0; i < resizedAlphaChannelData.length; i++) {
-        rgbaData[i * 4 + 0] = resizedAlphaChannelData[i]; // R
-        rgbaData[i * 4 + 1] = resizedAlphaChannelData[i]; // G
-        rgbaData[i * 4 + 2] = resizedAlphaChannelData[i]; // B
-        rgbaData[i * 4 + 3] = 255; // A
       }
 
-      let canvas = document.createElement('canvas');
-      canvas.width = 28;
-      canvas.height = 28;
+      visualizeImage(matrix)
+      let matrixTensor = tf.tensor(matrix.flat())
+      matrixTensor = matrixTensor.reshape([1,28,28,1])
 
-      let ctx = canvas.getContext('2d');
-      if (ctx) {
-        let imgData = new ImageData(rgbaData, 28, 28);
-        ctx.putImageData(imgData, 0, 0);
+      const model = await tf.loadLayersModel('/assets/model.json')
+      const result = document.getElementById("result")
+      const output =  (model.predict(matrixTensor) as tf.Tensor<tf.Rank>).reshape([10]).argMax().dataSync()
+      result!.innerHTML = "<span style='font-size:200px'>"+ output +"</span>";
 
-        let dataUrl = canvas.toDataURL();
-        this.dataUrl = dataUrl;
-      }
+
+
+
     }
   }
+
+  async makePrediction() {
+    const uint8Array = new Uint8Array(this.normalizeImage.dataSync()); // Convert to Uint8Array
+
+    let matrix = tf.tensor(uint8Array);
+    matrix = matrix.reshape([1, 28, 28, 1]);
+
+    const model = await tf.loadLayersModel('/assets/model.json');
+    const result = document.getElementById("result");
+    const output =  (model.predict(matrix) as tf.Tensor<tf.Rank>).reshape([10]).argMax().dataSync();
+    console.log(output);
+    result!.innerHTML = "<span style='font-size:200px'>"+ output +"</span>";
+  }
+
+  Center_Mass(image: any) //the function get coordinate of Center of image inspire by Physic "Center of Mass"
+  {
+    const rows = image.length;
+    const columns = image[0].length;
+    let Center_X = 0;
+    let Center_Y = 0;
+    let Mass = 0;
+
+    for (let y = 0; y < columns; y++) {
+      for (let x = 0; x < rows; x++) {
+        Center_X += x * image[y][x];
+        Center_Y += y * image[y][x];
+        Mass += image[y][x];
+      }
+    }
+    Center_X /= Mass;
+    Center_Y /= Mass;
+    return  [Math.round(Center_X),Math.round(Center_Y)]
+  }
+}
+
+function visualizeImage(matrix: number[][]) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const width = matrix[0].length;
+  const height = matrix.length;
+
+  canvas.width = width;
+  canvas.height = height;
+
+  // Draw the image
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const pixelValue = matrix[y][x] * 255;
+      const color = `rgb(${pixelValue}, ${pixelValue}, ${pixelValue})`;
+      ctx!.fillStyle = color;
+      ctx!.fillRect(x, y, 1, 1);
+    }
+  }
+
+  // Draw the bounding box
+  ctx!.strokeStyle = 'red';
+  ctx!.lineWidth = 2;
+  ctx!.strokeRect(0, 0, width, height);
+
+  document.body.appendChild(canvas);
 }
 
