@@ -32,6 +32,9 @@ export class CanvasComponent implements AfterViewInit {
   normalizeImage: any | null = null;
   dataUrl: string = '';
 
+  imageAfterPreProcess?: number[][];
+  predictNumber?: number;
+
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas?.nativeElement;
     
@@ -227,33 +230,19 @@ export class CanvasComponent implements AfterViewInit {
           }        
         }
       }
-
-      visualizeImage(matrix)
-      let matrixTensor = tf.tensor(matrix.flat())
-      matrixTensor = matrixTensor.reshape([1,28,28,1])
-
-      const model = await tf.loadLayersModel('/assets/model.json')
-      const result = document.getElementById("result")
-      const output =  (model.predict(matrixTensor) as tf.Tensor<tf.Rank>).reshape([10]).argMax().dataSync()
-      result!.innerHTML = "<span style='font-size:200px'>"+ output +"</span>";
-
-
-
-
+      this.imageAfterPreProcess = matrix;
+      this.dataUrl = visualizeImage(matrix)
     }
   }
 
   async makePrediction() {
-    const uint8Array = new Uint8Array(this.normalizeImage.dataSync()); // Convert to Uint8Array
+      await this.preProcessImage();
+      let matrixTensor = tf.tensor(this.imageAfterPreProcess!.flat())
+      matrixTensor = matrixTensor.reshape([1,28,28,1])
 
-    let matrix = tf.tensor(uint8Array);
-    matrix = matrix.reshape([1, 28, 28, 1]);
-
-    const model = await tf.loadLayersModel('/assets/model.json');
-    const result = document.getElementById("result");
-    const output =  (model.predict(matrix) as tf.Tensor<tf.Rank>).reshape([10]).argMax().dataSync();
-    console.log(output);
-    result!.innerHTML = "<span style='font-size:200px'>"+ output +"</span>";
+      const model = await tf.loadLayersModel('/assets/model.json')
+      const output =  (model.predict(matrixTensor) as tf.Tensor<tf.Rank>).reshape([10]).argMax().dataSync()
+      this.predictNumber = output[0];
   }
 
   Center_Mass(image: any) //the function get coordinate of Center of image inspire by Physic "Center of Mass"
@@ -284,8 +273,16 @@ function visualizeImage(matrix: number[][]) {
   const width = matrix[0].length;
   const height = matrix.length;
 
-  canvas.width = width;
-  canvas.height = height;
+  const borderWidth = 5; // Set the border width
+  const borderColor = 'black'; // Set the border color
+
+  canvas.width = width + borderWidth * 2; // Add border width to the canvas width
+  canvas.height = height + borderWidth * 2; // Add border width to the canvas height
+
+  // Draw the border
+  ctx!.strokeStyle = borderColor;
+  ctx!.lineWidth = borderWidth;
+  ctx!.strokeRect(borderWidth / 2, borderWidth / 2, width + borderWidth, height + borderWidth);
 
   // Draw the image
   for (let y = 0; y < height; y++) {
@@ -293,15 +290,8 @@ function visualizeImage(matrix: number[][]) {
       const pixelValue = matrix[y][x] * 255;
       const color = `rgb(${pixelValue}, ${pixelValue}, ${pixelValue})`;
       ctx!.fillStyle = color;
-      ctx!.fillRect(x, y, 1, 1);
+      ctx!.fillRect(x + borderWidth, y + borderWidth, 1, 1); // Add border width to the coordinates
     }
   }
-
-  // Draw the bounding box
-  ctx!.strokeStyle = 'red';
-  ctx!.lineWidth = 2;
-  ctx!.strokeRect(0, 0, width, height);
-
-  document.body.appendChild(canvas);
+  return canvas.toDataURL(); // Convert canvas to data URL
 }
-

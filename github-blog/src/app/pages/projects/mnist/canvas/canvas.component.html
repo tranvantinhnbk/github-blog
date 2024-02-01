@@ -2,10 +2,26 @@
   <canvas #canvas></canvas>
   <ng-container *ngIf="dataUrl">
     <img [src]="dataUrl" alt="" width="400" height="400">
+    <div class="predict">
+      {{predictNumber}}
+    </div>
   </ng-container>
 </div>
 <div class="button-container"> 
   <button mat-raised-button color="primary" (click)="clearCanvas()">Clear</button>
-  <button mat-raised-button color="primary" (click)="preProcessImage()">PreProcess</button>
   <button mat-raised-button color="primary" (click)="makePrediction()">Predict</button>
+</div>
+
+<div class="description">
+  <p>This is a demo of Handwritten Digit Recognition that was built based on TensorFlow JavaScript. The demo runs in your browser, not on a server.</p>
+  <p><strong>OFFLINE PROCESS:</strong></p>
+  <ul>
+    <li>The Dataset to train the model: <a href="http://yann.lecun.com/exdb/mnist/" style="background-color: yellow;">MNIST</a></li>
+    <li>The CNN architecture and source code for training the model are provided here. <a href="https://github.com/tiachoptinhdu/Machine_learning/blob/main/CNN_MNIST_for_web.ipynb">COLAB</a></li>
+  </ul>
+  <p><strong>ONLINE PROCESS:</strong></p>
+  <ul>
+    <li>The image is loaded from the canvas and preprocessed following the process outlined in the MNIST dataset</li>
+    <li>After that, the image is loaded to the model and a prediction is made</li>
+  </ul>
 </div>
