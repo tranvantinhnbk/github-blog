@@ -1,0 +1,41 @@
+:host {
+  display: contents
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  canvas {
+    border: 1px solid #000;
+    display: block;
+  }
+  img {
+    border: 1px solid #000;
+    display: block;
+  }
+  .predict {
+    font-size: 350px;
+    font-weight: bold;
+    color: brown;
+    width: 400px;
+    height: 400px;
+    border: 1px solid green;
+    text-align: center;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  button {
+    margin: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .canvas-container {
+    flex-direction: column;
+  }
+}

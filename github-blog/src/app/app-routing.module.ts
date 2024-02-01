@@ -5,6 +5,7 @@ import { AboutMeComponent } from './pages/about-me/about-me.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutMeComponent},
+  { path: 'projects', loadChildren: () => import('./pages/projects/projects.module').then((m) => m.ProjectsModule)},
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
 
