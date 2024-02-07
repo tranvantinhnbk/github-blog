@@ -1,0 +1,64 @@
+:host {
+  background: linear-gradient(green, white, yellow);
+
+  display: flex;
+}
+
+.timeline {
+  margin: 20px auto;
+  padding: 20px;
+  .outer {
+    border-left: 2px solid #333;
+    .card {
+      position: relative;
+      margin: 0 0 20px 20px;
+      padding: 10px;
+      background: #333;
+      color: gray;
+      border-radius: 8px;
+      max-width: 1000px;
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          p {
+            margin: 0;
+            color: white; // Change the color of the title card to a more appropriate color
+          }
+          .image {
+            display: flex;
+            flex-wrap: wrap;
+            
+            img {
+              height: auto;
+              width: 50%;
+            }
+          }
+          .title {
+            color: orangered;
+            position: relative;
+          }
+
+          /* Timeline dot  */
+          .title::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 999px;
+            left: -39px;
+            border: 3px solid orangered;
+          }
+        }
+    }
+  }
+}
+
+
+
+
+
+
+
+
