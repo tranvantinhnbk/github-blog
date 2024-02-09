@@ -5,6 +5,7 @@ import { AboutMeComponent } from './pages/about-me/about-me.component';
 import { CertificateComponent } from './pages/certificate/certificate.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/about', pathMatch: 'full'},
   { path: 'about', component: AboutMeComponent},
   { path: 'projects', loadChildren: () => import('./pages/projects/projects.module').then((m) => m.ProjectsModule)},
   { path: 'certificate', component: CertificateComponent },
