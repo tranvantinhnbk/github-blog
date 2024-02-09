@@ -26,14 +26,14 @@
             color: white; // Change the color of the title card to a more appropriate color
           }
           .image {
-            display: flex;
-            flex-wrap: wrap;
             
             img {
               height: auto;
               width: 50%;
+              
             }
           }
+
           .title {
             color: orangered;
             position: relative;
