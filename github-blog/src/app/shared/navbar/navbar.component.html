@@ -5,7 +5,7 @@
     LvCH
   </a>
   <ul>
-    <li><a href="/about">About</a></li>
+    <li><a routerLink='about'>About</a></li>
     <li>
       <a [matMenuTriggerFor]="blogMenu">
         Blog 
@@ -23,13 +23,13 @@
       </a>
       <mat-menu #projectMenu="matMenu">
         <button mat-menu-item >
-          <a href="/projects/mnist">
+          <a routerLink="/projects/mnist">
             Handwritten digit recognition
           </a>
         </button>
       </mat-menu>
     </li>
-    <li><a href="/certificate">Certificate</a></li>
+    <li><a routerLink="/certificate">Certificate</a></li>
   </ul>
   <a class="icon">
     LOVE
