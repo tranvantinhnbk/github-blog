@@ -12,7 +12,7 @@
         <img src="/assets/icon/down-arrow.svg"  width=10x>
       </a>
       <mat-menu #blogMenu="matMenu">
-        <button mat-menu-item>Leetcode</button>
+        <button mat-menu-item routerLink="/blog/leetcode">Leetcode</button>
         <button mat-menu-item>Mathematic</button>
       </mat-menu>
     </li>
@@ -22,11 +22,9 @@
         <img src="/assets/icon/down-arrow.svg"  width=10x>
       </a>
       <mat-menu #projectMenu="matMenu">
-        <button mat-menu-item >
-          <a routerLink="/projects/mnist">
+          <button routerLink="/projects/mnist" mat-menu-item >
             Handwritten digit recognition
-          </a>
-        </button>
+          </button>
       </mat-menu>
     </li>
     <li><a routerLink="/certificate">Certificate</a></li>

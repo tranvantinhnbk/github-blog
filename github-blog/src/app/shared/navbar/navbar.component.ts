@@ -10,7 +10,16 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [CommonModule, MatMenuModule, MatButtonModule, MatIconModule, RouterModule]
+  imports: [
+    //Angular module
+    CommonModule,
+    RouterModule,
+
+    //Material module
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+  ]
 })
 export class NavbarComponent {
   @Input() position: 'sticky' | 'relative' = 'sticky'; // Default to sticky if not provided
