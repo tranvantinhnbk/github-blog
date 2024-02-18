@@ -1,1 +1,10 @@
-<p>solution works!</p>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-dark.min.css" />
+
+<h1>Problem: Two Sum</h1>
+
+<div class="code-area" *ngFor="let item of solution| keyvalue">
+  <h2>{{ item.key }}</h2>
+  <textarea highlight-js lang="ts">
+    {{ item.value }}
+  </textarea>
+</div>

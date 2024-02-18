@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LeetcodeComponent } from './leetcode/leetcode.component';
 
 const routes: Routes = [
-  { path: 'leetcode', component: LeetcodeComponent }
+  { path: 'leetcode',  loadChildren: () => import('./leetcode/leetcode.module').then((m) => m.LeetcodeModule)}
 ];
 
 @NgModule({
