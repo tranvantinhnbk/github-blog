@@ -32,6 +32,9 @@ MIT
 @angular/core
 MIT
 
+@angular/forms
+MIT
+
 @angular/material
 MIT
 The MIT License
@@ -317,6 +320,9 @@ Apache-2.0
 
 
 ng2-pdf-viewer
+MIT
+
+ngx-highlight-js
 MIT
 
 pdfjs-dist
