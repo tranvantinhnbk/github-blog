@@ -2,16 +2,24 @@ import json
 
 # Example content from the <textarea>
 textarea_content = """
-function twoSum(nums: number[], target: number): number[] {
-    const valueToIndex = new Map<number, number>();
+function lengthOfLongestSubstring(s: string): number {
+    if (s.length === 1)
+        return 1;
+    const latestIndexOfValue = new Map<string, number>();
+    var i = 0;
+    var res = 0;
 
-    for(let i = 0; i < nums.length; i++) {
-        const complement = target - nums[i];
-        if(valueToIndex.has(complement)) 
-            return [valueToIndex.get(complement), i]
-        valueToIndex.set(nums[i], i);
+    for(let j = 0; j < s.length; j++){
+        const char = s[j];
+        if(latestIndexOfValue.has(char) && latestIndexOfValue.get(char)>=i) {
+            res = Math.max(res, j-i);
+            i = latestIndexOfValue.get(char) + 1
+        }
+        latestIndexOfValue.set(char, j)
     }
-}
+    res = Math.max(res, s.length - i )
+    return res
+};
 """
 
 # Serialize the content into JSON format
