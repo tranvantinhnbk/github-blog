@@ -3,3 +3,8 @@
  3. ngh --dir dist/github-blog
 //Change the git ssh
 ssh-add -K ~/.ssh/personal  
+
+
+//RUN DOCKERFILE 
+docker build . -t angular
+docker run -it -p 8080:80 angular
