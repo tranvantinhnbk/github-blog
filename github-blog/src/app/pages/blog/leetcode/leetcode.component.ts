@@ -96,4 +96,8 @@ export class LeetcodeComponent {
     return colorMap[level] || 'blue'; // Default to blue if level is not recognized
   }
 
+  convertToSolutionUrl(title: string) {
+    return './solution/' + title.toLowerCase().replace(/ /g, '-');
+  }
+
 }

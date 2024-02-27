@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { HighlightJsDirective, HighlightJsModule } from 'ngx-highlight-js';
-import { solution } from './content/two-sum';
+import { solution } from './content/solution';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Solution } from './solution.type';
+
 @Component({
   selector: 'app-solution',
   standalone: true,

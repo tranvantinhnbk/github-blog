@@ -1,3 +1,5 @@
  1.  npm install -g angular-cli-ghpages.
  2. ng build --configuration=production --base-href "https://tranvantinhnbk.github.io/"
  3. ngh --dir dist/github-blog
+//Change the git ssh
+ssh-add -K ~/.ssh/personal  
