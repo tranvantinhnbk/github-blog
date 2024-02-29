@@ -3,16 +3,16 @@ import json
 # Example content from the <textarea>
 textarea_content = """
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        latestIndexOfChar = {}
+    def maxArea(self, height: List[int]) -> int:
         res = 0
-        i=0
-        for j, char in enumerate(s):
-            if char in latestIndexOfChar and latestIndexOfChar[char] >= i:
-                res = max(res, j-i)
-                i = latestIndexOfChar[char] + 1
-            latestIndexOfChar[char] = j
-        res = max(res, len(s)-i)
+        left = 0
+        right = len(height) - 1
+        while left < right:
+            currentArea = (right - left) * min(height[left], height[right])
+            res = max(currentArea, res)
+            direction = height[left] < height[right]
+            left += direction
+            right -= not direction
         return res
 """
 
