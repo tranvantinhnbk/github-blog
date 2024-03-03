@@ -1,27 +1,44 @@
+import base64
 from typing import Union
+import cv2
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+from deepface import DeepFace
+import numpy as np
+
 
 app = FastAPI()
 
 
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
+class Image(BaseModel):
+    data: str
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
-
-
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    return {"item_name": item.name, "item_id": item_id}
+@app.post("/api/v1/faces_analyze")
+def analyze_faces(image: Image):
+    # Convert the image from BASE64 string to bytes
+    img_bytes = base64.b64decode(image.data)
+    img_array = np.frombuffer(img_bytes, np.uint8)
+    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+    
+    # Analyze the image using DeepFace
+    result = DeepFace.analyze(img)
+    
+    # Extract the desired fields from the result
+    dominant_race = result[0]['dominant_race']
+    dominant_gender = result[0]['dominant_gender']
+    bounding_box = result[0]['region']
+    age = result[0]['age']
+    dominant_emotion = result[0]['dominant_emotion']
+    
+    # Create the custom API response
+    response = {
+        "race": dominant_race,
+        "gender": dominant_gender,
+        "box": bounding_box,
+        "age": age,
+        "emotion": dominant_emotion
+    }
+    
+    return response

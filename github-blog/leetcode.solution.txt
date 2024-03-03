@@ -9,3 +9,17 @@ class Solution:
         for i in range(len(s)):
             res = max([longestExpandFrom(i, i), longestExpandFrom(i, i+1), res], key= lambda x: len(x))
         return res
+
+
+Symbol Table:
+  - Variable: x, Memory Address: 0x12345678
+  - Variable: y, Memory Address: 0x87654321
+  - Variable: obj, Memory Address: 0xABCD1234
+
+Memory (Stack):
+  0x12345678: 42 (Value of x)
+  0x87654321: "Hello" (Value of y)
+  0xABCD1234: 0x99999999 (Value of obj, a reference to the object in the heap)
+
+Memory (Heap):
+  0x99999999: { foo: "bar" } (The actual object referenced by obj)
