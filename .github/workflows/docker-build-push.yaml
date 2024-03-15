@@ -24,4 +24,4 @@ jobs:
       with:
         context: ./face
         push: true
-        tags: tranvantinhnbk/github-blog/face:latest
+        tags: tranvantinhnbk/face:latest
