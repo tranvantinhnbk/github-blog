@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Table(name = "app_user")
 @Entity
 @Builder
 @Getter @Setter @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class UserEntity implements Serializable {
     @Id
     @GeneratedValue
     @Column(name="user_id")

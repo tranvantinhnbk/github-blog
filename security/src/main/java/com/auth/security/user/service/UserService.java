@@ -10,24 +10,24 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDeta{
+public class UserService {
     private UserRepo userRepo;
     private PasswordEncoder passwordEncoder;
 
     public void create(UserDTO userDTO) {
-        String email = userDTO.getEmail().trim();
+        String email = userDTO.email().trim();
         //Check email in database
         Optional<UserEntity> exists = userRepo.findByPrincipal(email);
 
         if (exists.isPresent()) {
-            throw new IllegalStateException(email + " exists");
+            throw new RuntimeException(email + " exists");
         }
 
         UserEntity user = UserEntity.builder()
-                .age(userDTO.getAge())
-                .email(userDTO.getEmail())
-                .password(passwordEncoder.encode(userDTO.getPassword()))
-                .phoneNumber(userDTO.getPhoneNumber())
+                .age(userDTO.age())
+                .email(userDTO.email())
+                .password(passwordEncoder.encode(userDTO.password()))
+                .phoneNumber(userDTO.phoneNumber())
                 .build();
 
         userRepo.save(user);
@@ -36,4 +36,5 @@ public class UserService implements UserDeta{
     public Optional<UserEntity> loadByUserEmail(String email) {
         return this.userRepo.findByPrincipal(email);
     }
+
 }
