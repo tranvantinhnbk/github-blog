@@ -22,11 +22,7 @@ public class AuthController {
 
     @PostMapping("/")
     public ResponseEntity<String> createSessions(@Valid @RequestBody AuthDTO authDTO, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            authService.login(authDTO,request, response);
-        } catch (Exception ex){
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
-        }
-        return new ResponseEntity<String>("User Registered successfully", HttpStatus.OK);
+        authService.login(authDTO,request, response);
+        return new ResponseEntity<String>("User log in successfully", HttpStatus.OK);
     }
 }
