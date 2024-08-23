@@ -1,5 +1,6 @@
 package com.auth.security.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.NotBlank;
@@ -23,6 +24,7 @@ public record UserDTO(
         String password,
 
         @Pattern(regexp = "^$|^\\+(?:[0-9] ?){6,14}[0-9]$", message = "Invalid phone number format")
+        @JsonProperty("phone_number")
         String phoneNumber,
 
         @NotNull(message = "Age cannot be null")
