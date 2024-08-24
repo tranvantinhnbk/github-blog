@@ -9,10 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/sessions")
@@ -20,9 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<String> createSessions(@Valid @RequestBody AuthDTO authDTO, HttpServletRequest request, HttpServletResponse response) {
-        authService.login(authDTO,request, response);
-        return new ResponseEntity<String>("User log in successfully", HttpStatus.OK);
+        authService.login(authDTO, request, response);
+        return new ResponseEntity<String>("User log in successfully", HttpStatus.CREATED);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteSessions(HttpServletRequest request, HttpServletResponse response) {
+        authService.logout(request, response);
+        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
 }

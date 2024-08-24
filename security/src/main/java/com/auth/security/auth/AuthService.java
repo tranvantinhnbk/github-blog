@@ -37,4 +37,18 @@ public class AuthService {
         this.repository.saveContext(context, request, response);
     }
 
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("Invalidate session and clear authentication");
+        // Clear the SecurityContext
+        SecurityContext context = this.strategy.getContext();
+        context.setAuthentication(null);
+        this.strategy.setContext(context);
+
+
+        if (request.getSession(false) != null) {
+            request.getSession().invalidate();
+        }
+
+        this.repository.saveContext(SecurityContextHolder.createEmptyContext(), request, response);
+    }
 }

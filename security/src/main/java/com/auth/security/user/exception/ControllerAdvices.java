@@ -5,12 +5,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.naming.AuthenticationException;
@@ -30,10 +32,22 @@ public class ControllerAdvices {
 
     private record ExceptionDetails(String message, HttpStatus httpStatus, ZonedDateTime timestamp) { }
 
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<?> handleNoHandlerFoundException(NoHandlerFoundException ex) {
+        var exceptionDetails = new ExceptionDetails(
+                "The resource you are looking for could not be found.",
+                HttpStatus.NOT_FOUND,
+                ZonedDateTime.now(ZoneId.of("UTC")));
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(value = {RuntimeException.class, UnsupportedOperationException.class, IllegalStateException.class})
     public ResponseEntity<?> runTimeException(Exception ex) {
+        String message = "An unexpected error occurred. Please try again later.";
+
         var exceptionDetails = new ExceptionDetails(
-                ex.getMessage(),
+                message,
                 INTERNAL_SERVER_ERROR,
                 ZonedDateTime.now(ZoneId.of("UTC"))
         );
