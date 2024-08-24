@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
     private final AuthService authService;
 
-    @GetMapping("")
+    @GetMapping
     public String testEndpoint() {
-        return "Hello, this is a test!";
+        return "Hello, you are authenticated";
     }
 }
